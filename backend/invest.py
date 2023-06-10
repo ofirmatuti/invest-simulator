@@ -14,6 +14,11 @@ def get_investments():
     if start_month is None:
         return "Missing start_month parameter", 400
 
+    try:
+        datetime.datetime.strptime(start_month, '%Y-%m-%d')
+    except ValueError:
+        return jsonify({'error': 'Invalid start_month format. Please use YYYY-MM-DD.'}), 400
+
     monthly_investment = int(request.args.get('monthly_investment'))
     if monthly_investment is None:
         return "Missing monthly_investment parameter", 400

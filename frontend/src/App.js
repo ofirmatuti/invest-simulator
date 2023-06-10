@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function App() {
   const [investmentData, setInvestmentData] = useState([]);
   const [start_month, setStartMonth] = useState("1990-01-01");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchInvestmentData();
@@ -10,11 +11,20 @@ function App() {
 
   const fetchInvestmentData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/investments?start_month=${start_month}&monthly_investment=1000`);
-      const data = await response.json();
-      setInvestmentData(data);
+      const response = await fetch(
+        `http://localhost:5000/investments?start_month=${start_month}&monthly_investment=1000`
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setInvestmentData(data);
+        setError('');
+      } else {
+        setError('Invalid start month format. Please use YYYY-MM-DD.');
+      }
     } catch (error) {
       console.error('Error fetching investment data:', error);
+      setError('Failed to fetch investment data. Please try again later.');
     }
   };
 
