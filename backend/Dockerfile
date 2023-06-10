@@ -1,17 +1,27 @@
-# Use the official Python base image
-FROM python:3
+FROM python:3.8.10
 
-# Set the working directory in the container
+# Set the locale environment variables
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8
+
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file into the container
+# Copy requirements.txt
 COPY requirements.txt .
 
-# Install the Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+RUN apt-get update && apt-get install -y locales && \
+    locale-gen en_US.UTF-8 && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    pip install -r requirements.txt
 
-# Copy the Python script into the container
-COPY invest.py .
+# Copy the rest of the application files
+COPY . .
 
-# Run the Python script when the container starts
-CMD ["python", "invest.py"]
+# Expose port 5000
+EXPOSE 5000
+
+# Set the entrypoint
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "wsgi:app"]
+

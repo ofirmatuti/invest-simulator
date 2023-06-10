@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [investmentData, setInvestmentData] = useState([]);
-  const [start_month, setStartMonth] = useState("1990-01-01");
+  const [start_month, setStartMonth] = useState("2000-01-01");
   const [error, setError] = useState('');
 
   useEffect(() => {

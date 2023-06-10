@@ -19,9 +19,7 @@ def get_investments():
     except ValueError:
         return jsonify({'error': 'Invalid start_month format. Please use YYYY-MM-DD.'}), 400
 
-    monthly_investment = int(request.args.get('monthly_investment'))
-    if monthly_investment is None:
-        return "Missing monthly_investment parameter", 400
+    monthly_investment = int(request.args.get('monthly_investment', 1000))
 
     sp500_data = yf.download('^GSPC', start=start_month, end=datetime.date.today().isoformat(), interval='1mo')
 
@@ -54,6 +52,3 @@ def get_investments():
 
     return jsonify(investment_list)
 
-
-if __name__ == '__main__':
-    app.run()
