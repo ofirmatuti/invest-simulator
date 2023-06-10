@@ -1,8 +1,10 @@
 import yfinance as yf
 import datetime
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 monthly_investment = 1000
 
@@ -30,13 +32,14 @@ def get_investments():
 
         investment_object = {
             'date': date.strftime('%Y-%m-%d'),
-            'open_price': open_price,
-            'roi': roi,
-            'total_net': total_net,
-            'total_invested': total_invested
+            'open_price': round(open_price, 2),
+            'roi': round(roi, 2),
+            'total_invested': round(total_invested, 2),
+            'total_net': round(total_net,2)
         }
 
         investment_list.append(investment_object)
+    investment_list.reverse()
 
     return jsonify(investment_list)
 
