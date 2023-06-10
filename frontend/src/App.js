@@ -86,9 +86,13 @@ function App() {
               key={investment.date}
               style={{
                 background:
-                  investment.total_invested >= investment.total_net
-                    ? 'red'
-                    : 'green',
+                        investment.total_invested.length === investment.total_net.length
+        ? investment.total_invested >= investment.total_net
+          ? 'red'
+          : 'green'
+        : investment.total_invested.length > investment.total_net.length
+        ? 'red'
+        : 'green',
               }}
             >
               <td>{investment.date}</td>
