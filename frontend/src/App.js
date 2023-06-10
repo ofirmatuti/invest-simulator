@@ -3,16 +3,18 @@ import React, { useEffect, useState } from 'react';
 function App() {
   const [investmentData, setInvestmentData] = useState([]);
   const [start_month, setStartMonth] = useState("2000-01-01");
+  const [interval, setInterval] = useState("1mo");
+  const [investment, setInvestment] = useState(1000);
   const [error, setError] = useState('');
 
   useEffect(() => {
     fetchInvestmentData();
-  }, [start_month]);
+  }, [start_month, interval, investment]);
 
   const fetchInvestmentData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/investments?start_month=${start_month}&monthly_investment=1000`
+        `http://localhost:5000/investments?start_month=${start_month}&investment=${investment}&interval=${interval}`
       );
 
       if (response.ok) {
@@ -29,15 +31,47 @@ function App() {
   };
 
   function handleInputChange(event) {
-    setStartMonth(event.target.value)
+    setStartMonth(event.target.value);
+  }
+
+  function handleIntervalChange(event) {
+    setInterval(event.target.value);
+  }
+
+  function handleInvestmentChange(event) {
+    setInvestment(event.target.value);
   }
 
   return (
     <div className="App">
       <h1>Investment Data</h1>
-      <input type="text" value={start_month} onChange={handleInputChange}>
-
-      </input>
+      <div>
+        <label htmlFor="startMonth">Start Month:</label>
+        <input
+          type="text"
+          id="startMonth"
+          value={start_month}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="investment">Investment:</label>
+        <input
+          type="number"
+          id="investment"
+          value={investment}
+          onChange={handleInvestmentChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="interval">Interval:</label>
+        <select id="interval" value={interval} onChange={handleIntervalChange}>
+          <option value="1d">1d</option>
+          <option value="1wk">1wk</option>
+          <option value="1mo">1mo</option>
+          <option value="3mo">3mo</option>
+        </select>
+      </div>
       <table>
         <thead>
           <tr>
@@ -48,7 +82,15 @@ function App() {
         </thead>
         <tbody>
           {investmentData.map((investment) => (
-            <tr key={investment.date} style={{ background: investment.total_invested >= investment.total_net ? 'red' : 'green' }}>
+            <tr
+              key={investment.date}
+              style={{
+                background:
+                  investment.total_invested >= investment.total_net
+                    ? 'red'
+                    : 'green',
+              }}
+            >
               <td>{investment.date}</td>
               <td>{investment.total_invested}</td>
               <td>{investment.total_net}</td>
