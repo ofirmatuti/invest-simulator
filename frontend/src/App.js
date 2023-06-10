@@ -44,9 +44,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Investment Data</h1>
+      <h1>Investment performance</h1>
       <div>
-        <label htmlFor="startMonth">Start Month:</label>
+        <label htmlFor="startMonth">From date:</label>
         <input
           type="text"
           id="startMonth"
