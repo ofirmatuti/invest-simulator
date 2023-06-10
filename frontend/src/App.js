@@ -10,7 +10,7 @@ function App() {
 
   const fetchInvestmentData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/investments?start_month=${start_month}`);
+      const response = await fetch(`http://localhost:5000/investments?start_month=${start_month}&monthly_investment=1000`);
       const data = await response.json();
       setInvestmentData(data);
     } catch (error) {
