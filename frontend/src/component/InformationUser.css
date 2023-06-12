@@ -1,0 +1,15 @@
+.input {
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  margin-bottom: 25px;
+  margin-top: 25px;
+
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

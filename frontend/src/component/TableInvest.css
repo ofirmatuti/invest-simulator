@@ -1,0 +1,16 @@
+
+.green {
+  --bs-table-bg: #0fff50;
+  --bs-table-border-color: grey;
+}
+
+.red {
+  --bs-table-bg: #ff2400;
+  --bs-table-border-color: grey;
+}
+
+td {
+  text-align: center;
+  font-size: large;
+  font-weight: 600;
+}
