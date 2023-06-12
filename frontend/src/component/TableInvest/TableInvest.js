@@ -8,10 +8,10 @@ function TableInvest(props) {
   return (
     <Card
       style={{
-        margin: "15px",
+        margin: "10px",
         overflowY: "scroll",
-        width: "100%",
-        height: "43rem",
+        width: "50%",
+        height: "40rem",
       }}
     >
       <Table striped bordered hover>

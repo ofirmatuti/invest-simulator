@@ -4,13 +4,11 @@ import {
   CartesianGrid,
   XAxis,
   Brush,
-  Area,
   YAxis,
-  ResponsiveContainer,
-  AreaChart,
   Legend,
   Tooltip,
 } from "recharts";
+import "./Charts.js";
 import React from "react";
 
 function Charts(props) {
@@ -26,7 +24,7 @@ function Charts(props) {
 
   const chart = (
     <LineChart
-      width={600}
+      width={800}
       height={500}
       data={data}
       margin={{
