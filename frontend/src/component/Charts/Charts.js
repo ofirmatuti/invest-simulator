@@ -3,6 +3,7 @@ import {
   Line,
   CartesianGrid,
   XAxis,
+  Brush,
   Area,
   YAxis,
   ResponsiveContainer,
@@ -59,6 +60,7 @@ function Charts(props) {
         dataKey="total_net"
         stroke="#82ca9d"
       />
+      <Brush onChange={function noRefCheck() {}} />
     </LineChart>
   );
 

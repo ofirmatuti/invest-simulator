@@ -10,8 +10,8 @@ function TableInvest(props) {
       style={{
         margin: "15px",
         overflowY: "scroll",
-        width: "50rem",
-        height: "33rem",
+        width: "100%",
+        height: "43rem",
       }}
     >
       <Table striped bordered hover>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import TableInvest from "./component/TableInvest";
-import InformationUser from "./component/InformationUser";
-import Nav from "react-bootstrap/Nav";
-import Charts from "./component/Charts";
+import TableInvest from "./component/TableInvest/TableInvest";
+import InformationUser from "./component/InformationUser/InformationUser";
+import Charts from "./component/Charts/Charts";
 import "./App.css";
 
 function App() {
